@@ -16,63 +16,9 @@
 </header>
 <div class="main-wrapper">
 <section>
-
-<!-- サンプル表示用 -->
-<p id="test"></p>
-
-<!-- 戦え -->
-<div id="battle">
-	■<span id="bossName"></span><br>
-	<span id="enemyHp">???</span>/<span id="enemyHpMax">???</span><br>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 5));">パンチ</button>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 30));">剣で斬る</button>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 50));">すごい魔法</button>
-	<div id="battleLog"></div>
-</div>
-
-
-
+	
 </section>
 </div><!-- /.main-wrapper -->
 <footer>JavaScript Samples</footer>
-<script>
-	var sampleIs = document.getElementById('test');
-	var sampleView = '今は' + new Date().getHours() + '時やで';
-	sampleIs.innerHTML = sampleView;
-	
-	
-	var enemyHpStart = 100;
-	var enemyHpNow = enemyHpStart;
-	var bossname = 'ただの壁';
-	
-	bossName.innerHTML = bossname;
-	enemyHp.innerHTML = enemyHpNow;
-	var bossBeat = 1;
-	
-	enemyHpMax.innerHTML = enemyHpStart;
-	attack.innerHTML = '攻撃';
-	
-	function attack(n){
-	
-		enemyHpNow -= n
-
-		if(enemyHpNow <= 0 ){
-
-			if( bossBeat === 1 ){
-				battleLog.innerHTML = n + ' のダメージ!!<br>' + bossname + 'を撃破した!!' ;
-				bossBeat = 0;
-			}else{
-				battleLog.innerHTML = 'もうやめて!!<br>' + bossname + 'のライフは0よ!!'
-			}
-
-			enemyHp.innerHTML = 0;
-		}else{
-			battleLog.innerHTML = bossname + 'に' + n + ' のダメージ!!';
-			enemyHp.innerHTML = enemyHpNow;
-		}
-		
-	}
-	
-</script>
 </body>
 </html>
