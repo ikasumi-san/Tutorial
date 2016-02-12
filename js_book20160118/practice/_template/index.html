@@ -6,72 +6,130 @@
 <meta http-equiv="x-ua-compatible" content="IE=edge">
 <title>template</title>
 <link href="../../_common/css/style.css" rel="stylesheet" type="text/css">
+
+<style><!--
+
+.mono{
+	background-color:black;
+	color:white;
+}
+
+.blink{
+	opacity:1;
+	-webkit-animation:blink 1s infinite alternate;
+}
+
+@-webkit-keyframes blink{
+	0% { opacity: 0; }
+	100% { opacity:1; }
+}
+
+
+--></style>
+
 </head>
 <body>
 <header>
 <div class="header-contents">
-<h1>タイトル</h1>
-<h2>サブタイトル</h2>
+<h1>JS入門</h1>
+<h2>ゲームブック風の何かつくるよ！</h2>
 </div><!-- /.header-contents -->
 </header>
 <div class="main-wrapper">
 <section>
 
-<!-- サンプル表示用 -->
-<p id="test"></p>
+<!-- システムメニュー -->
+	<div align="right">
+		NEW GAME / LOAD / SAVE
+	</div>
 
-<!-- 戦え -->
-<div id="battle">
-	■<span id="bossName"></span><br>
-	<span id="enemyHp">???</span>/<span id="enemyHpMax">???</span><br>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 5));">パンチ</button>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 30));">剣で斬る</button>
-	<button id="attack" onClick="attack(Math.floor(Math.random() * 50));">すごい魔法</button>
-	<div id="battleLog"></div>
-</div>
 
+<!-- 時間イベント -->
+	<p id="timeEvent"></p>
+<!-- / 時間イベント -->
+
+
+
+<!-- シナリオ表示 -->
+	<p id="scenario"></p>
+	<div id="peger" class="mono" align="right" onClick="nextTo();"><font class="blink">click to next ▼</font></div>
+<!-- / シナリオ表示 -->
+
+
+<!-- バトルイベント -->
+	<div id="battle" style="display:none;">
+		■<span id="bossName"></span>が現れた！！<br>
+		<span id="enemyHp">???</span>/<span id="enemyHpMax">???</span><br>
+		<button id="attack" onClick="attack(Math.floor(Math.random() * 5));">パンチ</button>
+		<button id="slach" onClick="attack(Math.floor(Math.random() * 30));">剣で斬る</button>
+		<button id="magic" onClick="attack(Math.floor(Math.random() * 50));">すごい魔法</button>
+		<div id="battleLog"></div>
+	</div>
+<!-- / バトルイベント -->
 
 
 </section>
 </div><!-- /.main-wrapper -->
+
 <footer>JavaScript Samples</footer>
+
 <script>
-	var sampleIs = document.getElementById('test');
-	var sampleView = '今は' + new Date().getHours() + '時やで';
+
+	//今何時？
+	var sampleIs = document.getElementById('timeEvent');
+	var sampleView = '今は' + new Date().getHours() + '時だ…';
 	sampleIs.innerHTML = sampleView;
-	
-	
-	var enemyHpStart = 100;
-	var enemyHpNow = enemyHpStart;
-	var bossname = 'ただの壁';
-	
-	bossName.innerHTML = bossname;
-	enemyHp.innerHTML = enemyHpNow;
-	var bossBeat = 1;
-	
-	enemyHpMax.innerHTML = enemyHpStart;
-	attack.innerHTML = '攻撃';
-	
-	function attack(n){
-	
-		enemyHpNow -= n
 
-		if(enemyHpNow <= 0 ){
 
-			if( bossBeat === 1 ){
-				battleLog.innerHTML = n + ' のダメージ!!<br>' + bossname + 'を撃破した!!' ;
-				bossBeat = 0;
-			}else{
-				battleLog.innerHTML = 'もうやめて!!<br>' + bossname + 'のライフは0よ!!'
-			}
-
-			enemyHp.innerHTML = 0;
-		}else{
-			battleLog.innerHTML = bossname + 'に' + n + ' のダメージ!!';
-			enemyHp.innerHTML = enemyHpNow;
-		}
+	//バトル
+		var enemyHpStart = 100;
+		var enemyHpNow = enemyHpStart;
+		var bossname = 'ただの壁';
 		
-	}
+		bossName.innerHTML = bossname;
+		enemyHp.innerHTML = enemyHpNow;
+		var bossBeat = 1;
+		
+		enemyHpMax.innerHTML = enemyHpStart;
+		attack.innerHTML = '攻撃';
+		
+		function attack(n){
+		
+			enemyHpNow -= n
+
+			if(enemyHpNow <= 0 ){
+
+				if( bossBeat === 1 ){
+					battleLog.innerHTML = n + ' のダメージ!!<br>' + bossname + 'を撃破した!!' ;
+					bossBeat = 0;
+				}else{
+					battleLog.innerHTML = 'もうやめて!!<br>' + bossname + 'のライフは0よ!!'
+				}
+
+				enemyHp.innerHTML = 0;
+			}else{
+				battleLog.innerHTML = bossname + 'に' + n + ' のダメージ!!';
+				enemyHp.innerHTML = enemyHpNow;
+			}
+			
+		}
+
+
+
+	//テキスト
+		var scenarioIs = document.getElementById('scenario');
+		var scenarioView = 'ここは…';
+		scenarioIs.innerHTML = scenarioView;
+
+
+	//ページ送り
+		function nextTo(){
+			var text = "ここは一体どこなのだろう…";
+			scenarioView = text;
+			scenarioIs.innerHTML = scenarioView;
+		}
+
+
 	
 </script>
 </body>
